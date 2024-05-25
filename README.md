@@ -2,6 +2,20 @@
 
 My simple way of documenting how to provision my raspi 3B for Gentoo.
 
+Directories/files description:
+1) `boot` and `root`
+    - Contains the files that will be copied to /boot and / in the storage medium.
+    - In the setup, these are mounted in /mnt/boot and /mnt/gentoo.
+2) `deployment`
+    - contains the scripts that will prepare and copy the files to the storage device. This includes:
+        - Wiping and formatting the target storage device.
+        - copying firmware files for both boot and root.
+        - copy the configuration and script files to both boot and root.
+3) `get_deps.sh`
+    - clones the submodules
+    - gets the stage3 tarball
+    - gets portage packages for bootstrapping
+
 Steps:
 1) run get_deps.sh script
 2) run deployment/setup.sh script passing the storage device the you want to format
