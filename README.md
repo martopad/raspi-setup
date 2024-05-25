@@ -2,6 +2,11 @@
 
 My simple way of documenting how to provision my raspi 3B for Gentoo.
 
+Steps:
+1) run get_deps.sh script
+2) run deployment/setup.sh script passing the storage device the you want to format
+    - This is destructive. Double check the storage device that you will pass.
+
 Notes:
 1) Committing hard coded passwords, even though hashed/obfuscated, in source-control is bad practice:
     - etc/shadow file is not included in this commit. Added also in .gitignore.
