@@ -1,0 +1,12 @@
+# If using arm64 on a Pi3, select a 64 bit kernel
+arm_64bit=1
+
+# have a properly sized image
+disable_overscan=1
+
+# Enable audio (loads snd_bcm2835)
+dtparam=audio=on
+
+# Load Bluetooth driver
+dtparam=krnbt=on
+
