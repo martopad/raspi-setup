@@ -10,14 +10,14 @@ MNT_PT_BOOT="/mnt/boot"
 
 mount "${ARG_PARTI_ROOT}" "${MNT_PT_ROOT}"
 pushd "${ARG_FILES_DIR}"
-tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner -C ${MNT_PT_ROOT}
+tar xpf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner -C ${MNT_PT_ROOT}
 
 mount "${ARG_PARTI_BOOT}" "${MNT_PT_BOOT}"
-rsync -a "${ARG_FILES_DIR}/firmware/boot/" "${MNT_PT_BOOT}/"
-rsync -a "${ARG_FILES_DIR}/firmware/modules" "${MNT_PT_ROOT}/lib/"
+rsync -r "${ARG_FILES_DIR}/firmware/boot/" "${MNT_PT_BOOT}/"
+rsync -r "${ARG_FILES_DIR}/firmware/modules" "${MNT_PT_ROOT}/lib/"
 
-rsync -a "${ARG_FILES_DIR}/boot/" "${MNT_PT_BOOT}/"
-rsync -a "${ARG_FILES_DIR}/root/" "${MNT_PT_ROOT}/"
+rsync -r "${ARG_FILES_DIR}/boot/" "${MNT_PT_BOOT}/"
+rsync -r "${ARG_FILES_DIR}/root/" "${MNT_PT_ROOT}/"
 
 sed -ie 's/f0:12345/#0f:12345/' "${MNT_PT_ROOT}/etc/inittab"
 
@@ -35,7 +35,7 @@ rsync -a "${ARG_FILES_DIR}/firmware-nonfree/debian/config/brcm80211/cypress" "${
 
 #Bootstrap Network manager for Wifi internet puposes.
 # Maybe its better to do this via wired connection in the future.
-wget -P "${MNT_PT_ROOT}/var/cache/distfiles/" "http://distfiles.gentoo.org/distfiles/b4/NetworkManager-1.46.0.tar.xz"
+#wget -P "${MNT_PT_ROOT}/var/cache/distfiles/" "http://distfiles.gentoo.org/distfiles/b4/NetworkManager-1.46.0.tar.xz"
 
 
 echo "Done, congratulations! Safely unmounting, please wait.":
